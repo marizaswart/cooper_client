@@ -10,7 +10,11 @@ import { PerformanceDataProvider } from '../../providers/performance-data/perfor
 export class HomePage {
   user: any = {};
 
-  constructor(public navCtrl: NavController, public person: PersonProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public person: PersonProvider,
+    public performanceData: PerformanceDataProvider
+  ) {
     this.user = { distance: 1000, age: 20, gender: 'female' };
   }
 
