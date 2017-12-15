@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PersonProvider } from '../../providers/person/person';
+import { PerformanceDataProvider } from '../../providers/performance-data/performance-data';
 
 @Component({
   selector: 'page-home',
@@ -13,12 +14,14 @@ export class HomePage {
     this.user = { distance: 1000, age: 20, gender: 'female' };
   }
 
-  calculate() {
+  calculate(user) {
     this.person.age = this.user.age;
     this.person.gender = this.user.gender;
 
-    this. person.doAssessment(this.user.distance);
-    console.log(this.person.assessmentMessage);
+    this.person.doAssessment(this.user.distance);
+    this.performanceData
+      .saveData({ performance_data: { data: { message: this.person.assessmentMessage } } })
+      .subscribe(data => console.log(data));
   }
 
 }
